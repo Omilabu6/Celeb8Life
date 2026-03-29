@@ -130,7 +130,30 @@ function GallerySection() {
         separator="◇"
         className="py-4 border-b border-white/5 text-white/15 text-[10px] tracking-[0.5em] uppercase font-light"
       />
-
+      <div className="absolute inset-0 pt-52 flex items-center justify-center px-8">
+                <div className="text-center max-w-4xl">
+                  <FadeUp>
+                    <p className="text-white text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
+                      About the Experience
+                    </p>
+                  </FadeUp>
+                  <h2
+                  className="text-foreground text-[#C9A84C]  leading-[1.05] mb-6"
+                  style={{
+                    
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: "clamp(2.8rem, 6vw, 7rem)",
+                    fontWeight: 300,
+                  }}
+                >
+                  <RevealText text="A ceremony" />
+                  <br />
+                  <RevealText text="that" delay={0.15} />
+                  <RevealText text="moves" delay={0.25} className="italic text-gold" />
+                  <RevealText text=" the palate." delay={0.35} />
+                </h2>
+                </div>
+              </div>
       <div className="py-32 px-8 md:px-16">
         <div
           className="mb-24"
@@ -139,6 +162,7 @@ function GallerySection() {
             willChange: "transform",
           }}
         >
+
           <FadeUp delay={0.1}>
             <h2
               className="text-[#C9A84C] text-center"
