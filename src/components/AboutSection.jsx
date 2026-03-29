@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import TiltCard from "./TiltCard";
 import { motion, useInView } from "framer-motion";
 import { useParallax } from "../hooks/useParallax";
 import { FadeUp, CountUp, LineReveal, RevealText } from "./Reveal";
@@ -50,7 +51,7 @@ export default function AboutSection() {
             <RevealText text="that" delay={0.15} />
             <RevealText text="moves" delay={0.25} className="italic text-gold" />
             <RevealText text=" the palate." delay={0.35} />
-          </h2>
+           </h2>
           </div>
         </div>
       </div>
@@ -80,7 +81,7 @@ export default function AboutSection() {
           <div className="relative max-w-7xl mx-auto pt-80">
             <FadeUp>
               <VideoScaleOnScroll>
-                <div className="relative w-[400px]  rounded-2xl aspect-video overflow-hidden bg-card ">
+                <div className="relative rounded-2xl aspect-video overflow-hidden bg-card ">
                   <video
                     className="w-full rounded-2xl h-full object-cover"
                     autoPlay
@@ -102,6 +103,7 @@ export default function AboutSection() {
             ref={cardRef}
             className="lg:col-span-6 lg:col-start-7 relative"
           >
+             <TiltCard maxTilt={6} glare>
             <motion.div
               className="relative mt-20"
               initial={{ opacity: 0, y: 60, rotateX: 8 }}
@@ -112,14 +114,15 @@ export default function AboutSection() {
               {/* Ambient glow behind card */}
               <div className="absolute -inset-8 bg-gold/5 blur-3xl rounded-full" />
               
-              <div className="relative w-[500px] overflow-hidden group">
+              <div className="relative overflow-hidden group">
                 <img
                   src={celebr8Card}
                   alt="Celebr8 Lyfe — Engraved bottles are forever"
-                  className="w-full rounded-2xl h-auto object-cover"
+                  className="w-[500px] rounded-2xl h-auto object-cover"
                   loading="lazy"
                 /></div>
             </motion.div>
+            </TiltCard>
           </div>
         </div>
       </div>

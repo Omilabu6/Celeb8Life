@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useParallax } from "../hooks/useParallax";
-import { FadeUp } from "./Reveal";
+import { FadeUp, RevealText } from "./Reveal";
 import TiltCard from "./TiltCard";
 import drink from "./../public/drink.png";
 import tasting from "./../public/tasting.jpg";
@@ -53,6 +53,7 @@ function ExperienceCard({
     >
       <div
         ref={textRef}
+        className="border-2 border-white/20 bg-black/20 px-6 w-[500px] h-[400px] py-6 rounded-2xl"
         style={{
           transform: `translateY(${textY}px)`,
           willChange: "transform",
@@ -63,7 +64,7 @@ function ExperienceCard({
             className="text-[#C9A84C] mb-4"
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(1.8rem, 3.5vw, 3.6rem)",
+              fontSize: "clamp(1.8rem, 3.5vw, 2rem)",
               fontWeight: 300,
               lineHeight: 1,
             }}
@@ -85,24 +86,7 @@ function ExperienceCard({
         </FadeUp>
       </div>
 
-      <div
-        ref={imageRef}
-        className="-mt-10"
-        style={{
-          transform: `translateY(${imageY}px)`,
-          willChange: "transform",
-        }}
-      >
-        <TiltCard maxTilt={6} glare>
-          <div className="overflow-hidden aspect-[4/5] group cursor-pointer">
-            <img
-              src={item.src}
-              alt={item.title}
-              className="w-full h-full rounded-2xl object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
-            />
-          </div>
-        </TiltCard>
-      </div>
+    
     </div>
   );
 }
@@ -130,30 +114,6 @@ function GallerySection() {
         separator="◇"
         className="py-4 border-b border-white/5 text-white/15 text-[10px] tracking-[0.5em] uppercase font-light"
       />
-      <div className="absolute inset-0 pt-52 flex items-center justify-center px-8">
-                <div className="text-center max-w-4xl">
-                  <FadeUp>
-                    <p className="text-white text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
-                      About the Experience
-                    </p>
-                  </FadeUp>
-                  <h2
-                  className="text-foreground text-[#C9A84C]  leading-[1.05] mb-6"
-                  style={{
-                    
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(2.8rem, 6vw, 7rem)",
-                    fontWeight: 300,
-                  }}
-                >
-                  <RevealText text="A ceremony" />
-                  <br />
-                  <RevealText text="that" delay={0.15} />
-                  <RevealText text="moves" delay={0.25} className="italic text-gold" />
-                  <RevealText text=" the palate." delay={0.35} />
-                </h2>
-                </div>
-              </div>
       <div className="py-32 px-8 md:px-16">
         <div
           className="mb-24"
@@ -162,25 +122,34 @@ function GallerySection() {
             willChange: "transform",
           }}
         >
-
-          <FadeUp delay={0.1}>
-            <h2
-              className="text-[#C9A84C] text-center"
-              style={{
-                fontFamily: "'Playfair Display', serif",
-                fontSize: "clamp(3rem, 7vw, 8rem)",
-                fontWeight: 300,
-                lineHeight: 0.95,
-              }}
-            >
-              Most
-              <em className="px-3">Popular</em>
-            </h2>
-          </FadeUp>
+          <div className=" inset-0 pt-52 flex items-center justify-center px-8">
+                <div className="text-center max-w-4xl">
+                  <FadeUp>
+                    <p className="text-white text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
+                     Choose Your Experience
+                    </p>
+                  </FadeUp>
+                  <h2
+                  className="text-foreground text-[#C9A84C]  leading-[1.05] mb-15"
+                  style={{
+                    
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: "clamp(2.8rem, 6vw, 7rem)",
+                    fontWeight: 300,
+                  }}
+                >
+                  <RevealText text="Whether relaxed " />
+                  <br />
+                  <RevealText text="or refined, every" delay={0.15} />
+                  <RevealText text="session" delay={0.25} className="italic text-gold" />
+                  <RevealText text="is crafted with intention." delay={0.35} />
+                </h2>
+                </div>
+              </div>
         </div>
 
         {/* Side-by-side staggered layout */}
-        <div className="relative pb-24 flex flex-col md:flex-row md:items-start md:gap-16 space-y-24 md:space-y-0">
+        <div className="relative pb-24 flex flex-col md:flex-row md:items-start md:gap-16 space-y-14 md:space-y-0">
           {/* Card 1 — Social Tasting, sits at the top */}
           <ExperienceCard
             item={gallery[0]}
@@ -196,7 +165,7 @@ function GallerySection() {
             cardSpeed={0.18}
             textSpeed={0.1}
             imageSpeed={0.22}
-            offsetTop={440}
+            offsetTop={20}
           />
         </div>
       </div>

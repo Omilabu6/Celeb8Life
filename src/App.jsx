@@ -10,10 +10,10 @@ import GallerySection from "./components/GallerySection"
 import ContactSection from "./components/ContactSection";
 import WaterBornSection from "./components/WatertunSection";
 import Discover from "./components/Discover";
-import OurBrands from "./components/OurBrand";
 import { Sticker } from "lucide-react";
 import StickyPanels from "./components/StickyPanels";
 import Footer from "./components/Footer";
+import ScrollShowcase from "./components/ScrollshowCase";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,7 +54,7 @@ export default function App() {
         <AboutSection />
         <GallerySection/>
         <Discover/>
-        <OurBrands/>
+        <ScrollShowcase />
         <StickyPanels/>
         <ContactSection />
         <Footer/>
