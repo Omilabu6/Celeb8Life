@@ -13,6 +13,7 @@ import Discover from "./components/Discover";
 import OurBrands from "./components/OurBrand";
 import { Sticker } from "lucide-react";
 import StickyPanels from "./components/StickyPanels";
+import Footer from "./components/Footer";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -56,6 +57,7 @@ export default function App() {
         <OurBrands/>
         <StickyPanels/>
         <ContactSection />
+        <Footer/>
       </div>
     </div>
   );

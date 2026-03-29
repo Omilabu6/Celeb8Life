@@ -1,10 +1,13 @@
-import { useRef } from "react";
+import { useRef , useState} from "react";
 import { useParallax } from "../hooks/useParallax";
 import { FadeUp, LineReveal } from "./Reveal";
+import logo from "./../public/logo.svg"
+import Footer from "./Footer";
 
 export default function ContactSection() {
   const sectionRef = useRef(null);
-  const bgOffset = useParallax(sectionRef, 0.08);
+   const [email, setEmail] = useState("");
+  const bgWordOffset = useParallax(sectionRef, 0.08);
   const textOffset = useParallax(sectionRef, 0.4);
 
   return (
@@ -12,72 +15,81 @@ export default function ContactSection() {
       ref={sectionRef}
       data-nav-theme="light"
       id="contact"
-      className="relative min-h-screen bg-[#f0ece4] flex items-center justify-center overflow-hidden py-40"
+      className="relative min-h-screen pt-32 bg-[#f0ece4] flex items-center flex-col justify-center overflow-hidden "
     >
       {/* Giant background word */}
-      <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
-        style={{ transform: `translateY(${bgOffset}px)`, willChange: "transform" }}
+       <div
+        className=" pt-20 flex justify-center pointer-events-none overflow-hidden"
+        style={{ transform: `translateY(${bgWordOffset}px)`, willChange: "transform" }}
       >
-        <span
-          className="text-[22vw] font-black text-black/[0.03] select-none leading-none"
-          style={{ fontFamily: "'Playfair Display', serif" }}
-        >
-          HELLO
-        </span>
+        <img
+        src={logo}
+        alt=""
+        className="select-none w-[50vw]"
+        style={{ 
+          opacity: 0.8,
+          filter: "invert(0) brightness(0) saturate(0)", // nuke it to black
+        }}
+      />
       </div>
-
-      <div
-        className="relative text-center px-6 z-10"
-        style={{ transform: `translateY(${textOffset}px)`, willChange: "transform" }}
+       <div
+        className="w-full px-6  pt-52 flex justify-between items-start"
       >
-        <FadeUp>
-          <div className="text-black/30 text-[10px] tracking-[0.55em] uppercase mb-10 font-light">
-            Let's connect
-          </div>
-        </FadeUp>
-
-        <FadeUp delay={0.1}>
-          <a
-            href="mailto:hello@void.studio"
-            className="block text-black leading-[0.95] mb-12 hover:opacity-50 transition-opacity duration-400 group"
-            data-cursor-label="EMAIL"
-            data-cursor
-            style={{
-              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.5rem, 7vw, 9rem)",
-              fontWeight: 300,
-            }}
+        {/* Left: Stay in touch */}
+        <div className="flex flex-col gap-4">
+          <p
+            className="text-xs tracking-widest uppercase font-semibold"
+            style={{ color: "#5a5147" }}
           >
-            hello
-            <span className="italic">@void</span>
-            <br />
-            .studio
-          </a>
-        </FadeUp>
-
-        <FadeUp delay={0.2}>
-          <LineReveal className="text-black/15 mb-8 max-w-xs mx-auto" />
-          <div className="flex items-center justify-center gap-10 text-black/30 text-[10px] tracking-[0.35em] uppercase font-light">
-            {["Instagram", "Twitter", "LinkedIn", "Dribbble"].map((link) => (
+            Stay in Touch
+          </p>
+          <p
+            className="text-xs tracking-widest uppercase"
+            style={{ color: "#5a5147" }}
+          >
+            Sign up for new releases, collaborations and events.
+          </p>
+          <div className="flex items-stretch border border-current" style={{ color: "#5a5147" }}>
+            <input
+              type="email"
+              placeholder="YOUR EMAIL"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="bg-transparent px-4 py-3 text-xs tracking-widest uppercase outline-none placeholder-current w-56"
+              style={{ color: "#5a5147" }}
+            />
+            <button
+              className="px-5 py-3 text-xs tracking-widest uppercase font-semibold border-l border-current hover:bg-stone-300 transition-colors duration-200"
+              style={{ color: "#5a5147", borderColor: "#5a5147" }}
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+ 
+        {/* Right: Follow us */}
+        <div className="flex flex-col gap-3 text-right">
+          <p
+            className="text-xs tracking-widest uppercase font-semibold"
+            style={{ color: "#5a5147" }}
+          >
+            Follow Us
+          </p>
+          <div className="flex flex-col gap-2">
+            {["Facebook", "Instagram"].map((platform) => (
               <a
-                key={link}
+                key={platform}
                 href="#"
-                className="hover:text-black transition-colors duration-200"
-                data-cursor
+                className="text-xs tracking-widest uppercase border-b border-current pb-0.5 hover:opacity-60 transition-opacity duration-200"
+                style={{ color: "#5a5147" }}
               >
-                {link}
+                {platform}
               </a>
             ))}
           </div>
-        </FadeUp>
+        </div>
       </div>
-
-      {/* Footer */}
-      <div className="absolute bottom-8 left-0 right-0 flex justify-between px-8 md:px-16 text-black/20 text-[9px] tracking-[0.35em] uppercase font-light">
-        <span>© 2024 Void Studio</span>
-        <span>All Rights Reserved</span>
-      </div>
+      
     </section>
   );
 }

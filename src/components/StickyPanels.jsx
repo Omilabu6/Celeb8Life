@@ -110,21 +110,25 @@ const StickyPanels = () => {
 
           {/* ── LEAVE NO TRACE — slides up over img3 ── */}
           <motion.section
+
             id="leave-no-trace"
             ref={leaveRef}
             style={{
+              
               position: "absolute",
               inset: 0,
               zIndex: 4,
               y: leaveY,
               boxShadow: "0 -24px 60px 0 rgba(0,0,0,0.6)",
             }}
-            className="min-h-screen flex flex-col items-center justify-center px-4 py-24 bg-background"
+            className="min-h-screen bg-[#f0ece4] flex flex-col items-center justify-center px-4 py-24 bg-background"
           >
             <div className="relative w-full max-w-[1200px] mx-auto">
 
               {/* "Leave" - slides up */}
               <motion.div
+              style={{
+             fontFamily: "'Playfair Display', serif",}}
                 initial={{ y: 120, opacity: 0 }}
                 animate={isInView ? { y: 0, opacity: 1 } : { y: 120, opacity: 0 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -140,6 +144,8 @@ const StickyPanels = () => {
 
                 {/* "No" */}
                 <motion.span
+                 style={{
+                  fontFamily: "'Playfair Display', serif",}}
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -153,14 +159,14 @@ const StickyPanels = () => {
                   initial={{ width: 0, opacity: 0 }}
                   animate={
                     isInView
-                      ? { width: "clamp(200px,28vw,400px)", opacity: 1 }
+                      ? { width: "clamp(140px,20vw,200px)", opacity: 1 }
                       : { width: 0, opacity: 0 }
                   }
                   transition={{
                     width: { duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.35 },
                     opacity: { duration: 0.5, delay: 0.35 },
                   }}
-                  className="h-[clamp(150px,20vw,280px)] flex-shrink-0 overflow-hidden relative z-0"
+                  className="h-[clamp(150px,20vw,200px)] translate-y-10 flex-shrink-0 overflow-hidden relative z-0"
                 >
                   <img
                     src={bottleImg}
@@ -173,6 +179,8 @@ const StickyPanels = () => {
 
                 {/* "Trace" */}
                 <motion.span
+                  style={{
+                    fontFamily: "'Playfair Display', serif",}}
                   initial={{ opacity: 0 }}
                   animate={isInView ? { opacity: 1 } : { opacity: 0 }}
                   transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
@@ -188,7 +196,7 @@ const StickyPanels = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.7, delay: 0.75 }}
-              className="mt-16 max-w-lg text-center font-mono text-xs tracking-[0.15em] uppercase leading-relaxed text-foreground"
+              className="mt-20 max-w-sm  text-center font-mono text-xs tracking-[0.15em] uppercase leading-relaxed text-foreground"
             >
               Our commitment extends beyond purity, it's a matter of responsibility.
               We use recycled materials, upcycled fruits, and design processes that

@@ -142,10 +142,10 @@ export default function WaterBornSection() {
           </div>
 
           <h2
-            className="text-center w-[400px] leading-none mb-5"
+            className="text-center w-[500px] leading-none mb-5"
             style={{
              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(4.5rem, 13vw, 3rem)",
+              fontSize: "clamp(4.5rem, 13vw, 5rem)",
               fontWeight: 300,
               color: "#C9A84C",
               letterSpacing: "-0.025em",
