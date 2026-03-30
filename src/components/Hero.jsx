@@ -37,9 +37,8 @@ export default function Hero() {
           }}
         >
           <h1
-            className=" leading-[0.9] mb-0"
+            className=" leading-[0.9] mb-0 text-[#C9A84C]"
             style={{
-                color: "white",
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(4rem, 14vw, 8rem)",
               fontWeight: 300,
