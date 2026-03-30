@@ -13,7 +13,7 @@ import Discover from "./components/Discover";
 import { Sticker } from "lucide-react";
 import StickyPanels from "./components/StickyPanels";
 import Footer from "./components/Footer";
-import ScrollShowcase from "./components/ScrollshowCase";
+import ScrollShowcase from "./components/ScrollShowcase"
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
