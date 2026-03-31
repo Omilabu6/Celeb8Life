@@ -53,7 +53,7 @@ function ExperienceCard({
     >
       <div
         ref={textRef}
-        className="border-2 border-white/20 bg-black/20 px-6 w-[500px] h-[400px] py-6 rounded-2xl"
+        className=" px-6 w-[500px] h-[400px] py-6 rounded-2xl"
         style={{
           transform: `translateY(${textY}px)`,
           willChange: "transform",
@@ -149,7 +149,7 @@ function GallerySection() {
         </div>
 
         {/* Side-by-side staggered layout */}
-        <div className="relative pb-24 flex flex-col md:flex-row md:items-start md:gap-16 space-y-14 md:space-y-0">
+        <div className="relative h-[120vh]  flex flex-col md:flex-row md:items-start md:gap-16 space-y-14 md:space-y-0">
           {/* Card 1 — Social Tasting, sits at the top */}
           <ExperienceCard
             item={gallery[0]}
@@ -160,13 +160,14 @@ function GallerySection() {
           />
 
           {/* Card 2 — Connoisseur Tasting, shifted down so it sits beside but below */}
-          <ExperienceCard
+         
+        <div className=" right-0 bottom-0 absolute  "> <ExperienceCard
             item={gallery[1]}
             cardSpeed={0.18}
             textSpeed={0.1}
             imageSpeed={0.22}
-            offsetTop={20}
           />
+          </div>
         </div>
       </div>
     </section>
