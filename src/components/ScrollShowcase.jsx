@@ -1,131 +1,217 @@
-// src/components/ScrollShowcase.tsx
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { RevealText, FadeUp } from "./Reveal";
-import donJulio from "./../assets/bottles/don-julio.jpg"
+
+// src/components/ScrollShowcase.jsx
+import { useRef, useState, useEffect } from "react";
+import donJulio from "./../assets/bottles/don-julio.jpg";
 import johnnieWalker from "./../assets/bottles/johnnie-walker.jpg";
 import tanqueray from "./../assets/bottles/tanqueray.jpg";
 import ciroc from "./../assets/bottles/ciroc.jpg";
 import baileys from "./../assets/bottles/baileys.jpg";
 import smirnoff from "./../assets/bottles/smirnoff.jpg";
 
-const placeholderImage = "/placeholder.svg";
+// ─── Animation Helpers ────────────────────────────────────────────────────────
+
+export function RevealText({ text, delay = 0, className = "" }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { rootMargin: "-10%" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <span ref={ref} className={`inline-block overflow-hidden ${className}`}>
+      <span
+        className="inline-block"
+        style={{
+          transform: visible ? "translateY(0%)" : "translateY(100%)",
+          transition: `transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`,
+        }}
+      >
+        {text}
+      </span>
+    </span>
+  );
+}
+
+export function FadeUp({ children, delay = 0 }) {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      { rootMargin: "-10%" }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(20px)",
+        transition: `opacity 0.6s ease ${delay}s, transform 0.6s ease ${delay}s`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+// ─── Data ─────────────────────────────────────────────────────────────────────
 
 const slides = [
-  { image: donJulio, category: "Tequila", title: "Refined Agave" },
-  { image: johnnieWalker, category: "Whisky", title: "A Journey in Every Step" },
-  { image: tanqueray, category: "Gin", title: "Crisp Botanical Balance" },
-  { image:   ciroc, category: "Vodka", title: "Distilled Elegance" },
-  { image: baileys, category: "Cream Liqueur", title: "Smooth Indulgence" },
-  { image:  smirnoff, category: "Vodka", title: "Pure & Timeless" },
+  { image: donJulio,      category: "Tequila",       title: "Refined Agave" },
+  { image: johnnieWalker, category: "Whisky",         title: "A Journey in Every Step" },
+  { image: tanqueray,     category: "Gin",            title: "Crisp Botanical Balance" },
+  { image: ciroc,         category: "Vodka",          title: "Distilled Elegance" },
+  { image: baileys,       category: "Cream Liqueur",  title: "Smooth Indulgence" },
+  { image: smirnoff,      category: "Vodka",          title: "Pure & Timeless" },
 ];
 
 const SLIDE_COUNT = slides.length;
 
-function SlideImage({ slide, index, scrollYProgress }) {
-  const segmentSize = 1 / SLIDE_COUNT;
-  const start = index * segmentSize;
-  const y = useTransform(scrollYProgress, index === 0 ? [0, 1] : [start - segmentSize * 0.3, start + segmentSize * 0.3], index === 0 ? ["0%", "0%"] : ["100%", "0%"]);
-  const scale = useTransform(scrollYProgress, [start, start + segmentSize * 0.5], [1.05, 1]);
+// ─── Sub-components ───────────────────────────────────────────────────────────
+
+function SlideImage({ slide, index, activeIndex, progress }) {
+  const segSize = 1 / SLIDE_COUNT;
+
+  function getStyle() {
+    if (index === 0) return { transform: "translateY(0%)", zIndex: index };
+    const start = index * segSize;
+    const localP = Math.max(0, Math.min(1,
+      (progress - (start - segSize * 0.3)) / (segSize * 0.6)
+    ));
+    return { transform: `translateY(${100 - localP * 100}%)`, zIndex: index };
+  }
 
   return (
-    <motion.div className="absolute inset-0" style={{ y, zIndex: index }}>
-      <motion.img src={slide.image} alt={slide.title} className="w-full h-full object-cover" loading={index === 0 ? undefined : "lazy"} width={960} height={1200} style={{ scale }} />
-    </motion.div>
+    <div className="absolute inset-0" style={getStyle()}>
+      <img
+        src={slide.image}
+        alt={slide.title}
+        className="w-full h-full object-cover"
+        loading={index === 0 ? undefined : "lazy"}
+        width={960}
+        height={1200}
+      />
+    </div>
   );
 }
 
-function SlideText({ slide, index, scrollYProgress }) {
-  const segmentSize = 1 / SLIDE_COUNT;
-  const start = index * segmentSize;
-  const end = (index + 1) * segmentSize;
-  const isFirst = index === 0;
-  const isLast = index === SLIDE_COUNT - 1;
-  const TRANS = segmentSize * 0.15;
+function SlideText({ slide, index, activeIndex, segProgress }) {
+  function getStyle() {
+    const isActive = index === activeIndex;
+    const isPrev   = index < activeIndex;
 
-  let yInput, yOutput;
-  if (isFirst) { yInput = [0, end - TRANS, end]; yOutput = ["0%", "0%", "-60%"]; }
-  else if (isLast) { yInput = [start, start + TRANS, 1]; yOutput = ["60%", "0%", "0%"]; }
-  else { yInput = [start, start + TRANS, end - TRANS, end]; yOutput = ["60%", "0%", "0%", "-60%"]; }
+    if (isActive) {
+      const yVal = segProgress > 0.85 ? `${-((segProgress - 0.85) / 0.15) * 60}%` : "0%";
+      const op   = segProgress > 0.85 ? 1 - (segProgress - 0.85) / 0.15 : 1;
+      return { transform: `translateY(${yVal})`, opacity: op, zIndex: SLIDE_COUNT + 1 };
+    }
+    if (isPrev) return { transform: "translateY(-60%)", opacity: 0, zIndex: 0 };
 
-  let opacityInput, opacityOutput;
-  if (isFirst) { opacityInput = [0, end - TRANS, end]; opacityOutput = [1, 1, 0]; }
-  else if (isLast) { opacityInput = [start, start + TRANS, 1]; opacityOutput = [0, 1, 1]; }
-  else { opacityInput = [start, start + TRANS, end - TRANS, end]; opacityOutput = [0, 1, 1, 0]; }
+    // Next slides
+    if (index === activeIndex + 1 && segProgress > 0.85) {
+      const t = (segProgress - 0.85) / 0.15;
+      return { transform: `translateY(${60 - t * 60}%)`, opacity: t, zIndex: SLIDE_COUNT + 1 };
+    }
+    return { transform: "translateY(60%)", opacity: 0, zIndex: 0 };
+  }
 
-  const TOP = SLIDE_COUNT + 1, BURIED = 0;
-  let zInput, zOutput;
-  if (isFirst) { zInput = [0, end - 0.001, end]; zOutput = [TOP, TOP, BURIED]; }
-  else if (isLast) { zInput = [start - 0.001, start, 1]; zOutput = [BURIED, TOP, TOP]; }
-  else { zInput = [start - 0.001, start, end - 0.001, end]; zOutput = [BURIED, TOP, TOP, BURIED]; }
-
-  const y = useTransform(scrollYProgress, yInput, yOutput);
-  const opacity = useTransform(scrollYProgress, opacityInput, opacityOutput);
-  const zIndex = useTransform(scrollYProgress, zInput, zOutput);
-  const numberStr = String(index + 1).padStart(2, "0");
+  const numStr   = String(index + 1).padStart(2, "0");
   const totalStr = String(SLIDE_COUNT).padStart(2, "0");
 
   return (
-    <motion.div className="absolute inset-0 flex flex-col justify-center" style={{ y, opacity, zIndex }}>
-      <p className="font-body tracking-[0.05em] text-charcoal mb-6" style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)" }}>
-        <span className="font-normal">{numberStr}</span>
+    <div
+      className="absolute inset-0 flex flex-col justify-center"
+      style={{
+        ...getStyle(),
+        transition: "transform 0.7s cubic-bezier(0.16,1,0.3,1), opacity 0.5s ease",
+      }}
+    >
+      <p className="font-body tracking-[0.05em] text-charcoal mb-6"
+         style={{ fontSize: "clamp(1rem, 1.5vw, 1.25rem)" }}>
+        <span className="font-normal">{numStr}</span>
         <span className="text-muted-foreground text-[0.85em]"> / {totalStr}</span>
       </p>
       <div className="border-t border-border pt-3 mb-3">
-        <p className="font-body text-muted-foreground tracking-[0.12em] uppercase mb-0" style={{ fontSize: "clamp(0.7rem, 1vw, 0.85rem)" }}>
+        <p className="font-body text-muted-foreground tracking-[0.12em] uppercase mb-0"
+           style={{ fontSize: "clamp(0.7rem, 1vw, 0.85rem)" }}>
           {slide.category}
         </p>
       </div>
-      <h2 className="font-body font-normal text-charcoal" style={{ fontSize: "clamp(2.2rem, 4.5vw, 4.5rem)", lineHeight: 1.05, letterSpacing: "-0.01em", margin: "0 0 clamp(1.5rem, 3vh, 2.5rem) 0" }}>
+      <h2
+        className="font-body font-normal text-charcoal"
+        style={{
+          fontSize: "clamp(2.2rem, 4.5vw, 4.5rem)",
+          lineHeight: 1.05,
+          letterSpacing: "-0.01em",
+          margin: "0 0 clamp(1.5rem, 3vh, 2.5rem) 0",
+        }}
+      >
         {slide.title}
       </h2>
-      {slide.items && (
-        <ul className="list-none p-0 m-0">
-          {slide.items.map((item, i) => (
-            <li key={item} className="border-b border-border" style={{ borderTop: i === 0 ? "1px solid hsl(var(--border))" : "none" }}>
-              <div className="flex items-center justify-between" style={{ padding: "clamp(0.6rem, 1.2vh, 1rem) 0" }}>
-                <span className="font-body font-normal tracking-tight transition-colors duration-200" style={{ fontSize: "clamp(1.1rem, 2vw, 1.6rem)", color: i === 0 ? "hsl(var(--charcoal))" : "hsl(var(--muted-foreground))" }}>{item}</span>
-                <span className="font-body tracking-[0.1em] uppercase cursor-pointer whitespace-nowrap ml-4" style={{ fontSize: "clamp(0.65rem, 0.9vw, 0.8rem)", color: i === 0 ? "hsl(var(--foreground))" : "hsl(var(--muted-foreground))" }}>Learn More</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </motion.div>
+    </div>
   );
 }
 
-function SlideNumber({ index, scrollYProgress }) {
-  const segmentSize = 1 / SLIDE_COUNT;
-  const start = index * segmentSize;
-  const end = (index + 1) * segmentSize;
-  const isFirst = index === 0;
-  const isLast = index === SLIDE_COUNT - 1;
-  const TRANS = segmentSize * 0.15;
-
-  let opIn, opOut;
-  if (isFirst) { opIn = [0, end - TRANS, end]; opOut = [1, 1, 0]; }
-  else if (isLast) { opIn = [start, start + TRANS, 1]; opOut = [0, 1, 1]; }
-  else { opIn = [start, start + TRANS, end - TRANS, end]; opOut = [0, 1, 1, 0]; }
-
-  const opacity = useTransform(scrollYProgress, opIn, opOut);
-  const num = String(index + 1).padStart(2, "0");
-  const tot = String(SLIDE_COUNT).padStart(2, "0");
+function SlideNumber({ index, activeIndex }) {
+  const numStr   = String(index + 1).padStart(2, "0");
+  const totalStr = String(SLIDE_COUNT).padStart(2, "0");
 
   return (
-    <motion.div className="absolute top-0 left-0 whitespace-nowrap" style={{ opacity, zIndex: index }}>
-      <span className="font-body font-normal text-charcoal tracking-tight" style={{ fontSize: "clamp(1.8rem, 3vw, 2.8rem)" }}>{num}</span>
-      <span className="font-body text-muted-foreground ml-1" style={{ fontSize: "clamp(0.75rem, 1.1vw, 1rem)" }}>/ {tot}</span>
-    </motion.div>
+    <div
+      className="absolute top-0 left-0 whitespace-nowrap"
+      style={{
+        opacity: index === activeIndex ? 1 : 0,
+        transition: "opacity 0.4s ease",
+        zIndex: index,
+      }}
+    >
+     
+    </div>
   );
 }
+
+// ─── Main Export ──────────────────────────────────────────────────────────────
 
 export default function ScrollShowcase() {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({ target: containerRef, offset: ["start start", "end end"] });
+  const [progress, setProgress]     = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = containerRef.current;
+      if (!el) return;
+      const rect  = el.getBoundingClientRect();
+      const total = el.offsetHeight - window.innerHeight;
+      const p     = Math.max(0, Math.min(1, -rect.top / total));
+      setProgress(p);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const segSize     = 1 / SLIDE_COUNT;
+  const activeIndex = Math.min(SLIDE_COUNT - 1, Math.floor(progress / segSize));
+  const segProgress = (progress - activeIndex * segSize) / segSize;
 
   return (
     <>
+      {/* ── Hero ── */}
       <div className="py-36 text-center bg-[#f0ece4]">
         <FadeUp>
           <p className="text-black text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
@@ -133,13 +219,13 @@ export default function ScrollShowcase() {
           </p>
         </FadeUp>
         <h2
-         className="text-foreground text-[#C9A84C]  leading-[1.05] mb-15"
+          className="text-[#C9A84C] leading-[1.05] mb-15"
           style={{
-            
             fontFamily: "'Playfair Display', serif",
             fontSize: "clamp(2.8rem, 6vw, 7rem)",
             fontWeight: 300,
-          }}>
+          }}
+        >
           <RevealText text="A ceremony" /><br />
           <RevealText text="that" delay={0.15} />{" "}
           <RevealText text="moves" delay={0.25} className="italic" />{" "}
@@ -147,20 +233,54 @@ export default function ScrollShowcase() {
         </h2>
       </div>
 
-      <section ref={containerRef} className="relative bg-[#f0ece4]" style={{ height: `${SLIDE_COUNT * 100}vh` }}>
+      {/* ── Scroll Showcase ── */}
+      <section
+        ref={containerRef}
+        className="relative bg-[#f0ece4]"
+        style={{ height: `${SLIDE_COUNT * 100}vh` }}
+      >
         <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center bg-background">
+          {/* Sidebar counter */}
           <div className="absolute left-[clamp(1.5rem,3vw,3rem)] top-1/2 -translate-y-1/2 z-10 pointer-events-none">
             <div className="relative h-32 w-20">
-              {slides.map((_, i) => <SlideNumber key={i} index={i} scrollYProgress={scrollYProgress} />)}
+              {slides.map((_, i) => (
+                <SlideNumber key={i} index={i} activeIndex={activeIndex} />
+              ))}
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-[clamp(2rem,4vw,5rem)] w-full items-center" style={{ padding: "0 clamp(5rem, 10vw, 10rem) 0 clamp(5rem, 8vw, 8rem)" }}>
-            <div className="relative w-full bg-secondary overflow-hidden rounded" style={{ aspectRatio: "3/4", maxHeight: "72vh" }}>
-              {slides.map((slide, i) => <SlideImage key={i} slide={slide} index={i} scrollYProgress={scrollYProgress} />)}
+          {/* Two-column grid */}
+          <div
+            className="grid grid-cols-2 gap-[clamp(2rem,4vw,5rem)] w-full items-center"
+            style={{ padding: "0 clamp(5rem,10vw,10rem) 0 clamp(5rem,8vw,8rem)" }}
+          >
+            {/* Image stack */}
+            <div
+              className="relative w-full bg-secondary overflow-hidden rounded"
+              style={{ aspectRatio: "3/4", maxHeight: "72vh" }}
+            >
+              {slides.map((slide, i) => (
+                <SlideImage
+                  key={i}
+                  slide={slide}
+                  index={i}
+                  activeIndex={activeIndex}
+                  progress={progress}
+                />
+              ))}
             </div>
+
+            {/* Text stack */}
             <div className="relative h-[65vh] overflow-hidden">
-              {slides.map((slide, i) => <SlideText key={i} slide={slide} index={i} scrollYProgress={scrollYProgress} />)}
+              {slides.map((slide, i) => (
+                <SlideText
+                  key={i}
+                  slide={slide}
+                  index={i}
+                  activeIndex={activeIndex}
+                  segProgress={segProgress}
+                />
+              ))}
             </div>
           </div>
         </div>
