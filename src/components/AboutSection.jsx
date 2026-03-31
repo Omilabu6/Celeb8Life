@@ -42,7 +42,7 @@ export default function AboutSection() {
             style={{
               
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.8rem, 6vw, 7rem)",
+              fontSize: "clamp(2.8rem, 6vw, 3rem)",
               fontWeight: 300,
             }}
           >
@@ -70,7 +70,7 @@ export default function AboutSection() {
               <p className="text-muted-foreground text-white
                text-xl leading-[1.9] mb-6 font-light">
                 The Tasting Room is not a bar. It is a private ceremony where
-                whisky becomes the language of discovery — guided by hosts who
+                whisky becomes the language of discovery guided by hosts who
                 have spent years making the art of tasting feel like play.
               </p>
             </FadeUp>

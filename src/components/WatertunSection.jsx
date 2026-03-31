@@ -145,7 +145,7 @@ export default function WaterBornSection() {
             className="text-center w-[500px] leading-none mb-5"
             style={{
              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(4.5rem, 13vw, 5rem)",
+              fontSize: "clamp(4.5rem, 13vw, 3rem)",
               fontWeight: 300,
               color: "#C9A84C",
               letterSpacing: "-0.025em",

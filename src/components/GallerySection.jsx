@@ -130,17 +130,17 @@ function GallerySection() {
                     </p>
                   </FadeUp>
                   <h2
-                  className="text-foreground text-[#C9A84C]  leading-[1.05] mb-15"
+                  className="text-foreground text-[#C9A84C]  leading-[1.05] pb-44 "
                   style={{
                     
                     fontFamily: "'Playfair Display', serif",
-                    fontSize: "clamp(2.8rem, 6vw, 7rem)",
+                    fontSize: "clamp(2.8rem, 6vw, 3rem)",
                     fontWeight: 300,
                   }}
                 >
-                  <RevealText text="Whether relaxed " />
+                  <RevealText text="Whether relaxed or refined, " />
                   <br />
-                  <RevealText text="or refined, every" delay={0.15} />
+                  <RevealText text=" every" delay={0.15} />
                   <RevealText text="session" delay={0.25} className="italic text-gold" />
                   <RevealText text="is crafted with intention." delay={0.35} />
                 </h2>

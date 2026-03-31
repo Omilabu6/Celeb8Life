@@ -146,7 +146,7 @@ function SlideText({ slide, index, activeIndex, segProgress }) {
         <span className="font-normal">{numStr}</span>
         <span className="text-muted-foreground text-[0.85em]"> / {totalStr}</span>
       </p>
-      <div className="border-t border-border pt-3 mb-3">
+      <div className="border-t border-black/20 pt-3 mb-3">
         <p className="font-body text-muted-foreground tracking-[0.12em] uppercase mb-0"
            style={{ fontSize: "clamp(0.7rem, 1vw, 0.85rem)" }}>
           {slide.category}
@@ -155,7 +155,7 @@ function SlideText({ slide, index, activeIndex, segProgress }) {
       <h2
         className="font-body font-normal text-charcoal"
         style={{
-          fontSize: "clamp(2.2rem, 4.5vw, 4.5rem)",
+          fontSize: "clamp(2.2rem, 4.5vw, 3rem)",
           lineHeight: 1.05,
           letterSpacing: "-0.01em",
           margin: "0 0 clamp(1.5rem, 3vh, 2.5rem) 0",
@@ -215,21 +215,21 @@ export default function ScrollShowcase() {
       <div className="py-36 text-center bg-[#f0ece4]">
         <FadeUp>
           <p className="text-black text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
-            Choose Your Experience
+            Our Collection
           </p>
         </FadeUp>
         <h2
           className="text-[#C9A84C] leading-[1.05] mb-15"
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(2.8rem, 6vw, 7rem)",
+            fontSize: "clamp(2.8rem, 6vw, 3rem)",
             fontWeight: 300,
           }}
         >
-          <RevealText text="A ceremony" /><br />
+          <RevealText text="A curation" /><br />
           <RevealText text="that" delay={0.15} />{" "}
-          <RevealText text="moves" delay={0.25} className="italic" />{" "}
-          <RevealText text="the palate." delay={0.35} />
+          <RevealText text="elevates" delay={0.25} className="italic" />{" "}
+          <RevealText text="every sip." delay={0.35} />
         </h2>
       </div>
 

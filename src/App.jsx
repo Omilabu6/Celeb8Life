@@ -3,6 +3,7 @@ import Loader from "./components/Loader";
 import Cursor from "./components/Cursor";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import { FadeUp, RevealText } from "./components/Reveal";
 import MarqueeDivider from "./components/MarqueeDivider";
 import ParallaxSection from "./components/ParallaxSection";
 import AboutSection from "./components/AboutSection";
@@ -53,7 +54,32 @@ export default function App() {
         <MarqueeDivider theme="light" />
         <AboutSection />
         <GallerySection/>
-        <Discover/>
+        <div>
+          <div className="text-center mx-auto py-48 max-w-4xl">
+            <FadeUp>
+              <p className="text-white text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
+                Discover Your Flavor
+              </p>
+            </FadeUp>
+            <h2
+            className="text-foreground text-[#C9A84C]  leading-[1.05] mb-20"
+            style={{
+              
+              fontFamily: "'Playfair Display', serif",
+              fontSize: "clamp(2.8rem, 6vw, 3rem)",
+              fontWeight: 300,
+            }}
+          >
+            <RevealText text="From smoky to " />
+            <br />
+            <RevealText text="sweet" delay={0.15} />
+            <RevealText text="every" delay={0.25} className="italic text-gold" />
+            <RevealText text="note  is intentional" delay={0.35} />
+          </h2>
+          </div>
+           <Discover/>
+        </div>
+       
         <ScrollShowcase />
         <StickyPanels/>
         <ContactSection />

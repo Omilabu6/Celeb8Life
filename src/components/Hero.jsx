@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useParallax } from "../hooks/useParallax";
-import arrow from "./../public/arrow.svg";
+import arrow from "../public/arrow.png";
 import video from "./../public/video.mp4";
 
 export default function Hero() {
@@ -82,8 +82,8 @@ export default function Hero() {
           Scroll
         </span>
         <div className="flex justify-center">
-          <div className="animate-bounce text-white/70 text-xl">
-            <img src={arrow} alt="" />
+          <div className="animate-bounce  text-white/70 text-xl">
+            <img src={arrow} className="rotate-90" alt="" />
           </div>
         </div>
       </div>
