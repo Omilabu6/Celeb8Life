@@ -10,7 +10,7 @@ const StickyPanels = () => {
     <motion.section
       id="leave-no-trace"
       ref={leaveRef}
-      className="min-h-screen bg-[#f0ece4] flex flex-col items-center justify-center px-4 py-24 bg-background"
+      className="min-h-screen bg-[#f0ece4]  flex flex-col items-center justify-center px-4 py-32 bg-background"
     >
       <div className="relative w-full max-w-[1200px] mx-auto">
 
@@ -23,7 +23,7 @@ const StickyPanels = () => {
           className="text-center mb-[-2vw]"
         >
           <h2 className="font-display text-[clamp(5rem,12vw,14rem)] leading-[0.85] text-foreground italic">
-            Leave
+           Crafted
           </h2>
         </motion.div>
 
@@ -38,7 +38,7 @@ const StickyPanels = () => {
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="font-display text-[clamp(5rem,12vw,14rem)] leading-[0.85] text-foreground italic relative z-10"
           >
-            No
+            To
           </motion.span>
 
           {/* Bottle image expanding between words */}
@@ -70,9 +70,9 @@ const StickyPanels = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-            className="font-display text-[clamp(5rem,12vw,14rem)] leading-[0.85] text-foreground italic relative z-10"
+            className="font-display text-[clamp(5rem,12vw,14rem)] leading-[0.85] text-foreground italic relative ml-3 z-10"
           >
-            Trace
+            Be Felt
           </motion.span>
         </div>
       </div>
@@ -84,10 +84,8 @@ const StickyPanels = () => {
         transition={{ duration: 0.7, delay: 0.75 }}
         className="mt-20 max-w-sm text-center font-mono text-xs tracking-[0.15em] uppercase leading-relaxed text-foreground"
       >
-        Our commitment extends beyond purity, it's a matter of responsibility.
-        We use recycled materials, upcycled fruits, and design processes that
-        respect the land that inspires us.
-      </motion.p>
+        This isn’t just a collection — it’s a curated experience. Each selection is designed to be explored, understood, and remembered.
+        </motion.p>
     </motion.section>
   );
 };

@@ -43,35 +43,48 @@ const PAIR_TIMINGS = [
   { fadeIn: 0.52, peak: 0.58, fadeOut: 0.74, end: 0.82 },
 ];
 
-function NotePair({ pair, index, scrollYProgress }) {
-  const { fadeIn, peak, fadeOut, end } = PAIR_TIMINGS[index];
+function NoteItem({ note, pairIndex, scrollYProgress }) {
+  const { fadeIn, peak, fadeOut, end } = PAIR_TIMINGS[pairIndex];
+  const isBottom = note.position === "bottom-right";
 
   const opacity = useTransform(
     scrollYProgress,
     [fadeIn, peak, fadeOut, end],
     [0, 1, 1, 0]
   );
+
+  // bottom-anchored notes slide UP into view, top-anchored slide DOWN into view
   const y = useTransform(
     scrollYProgress,
     [fadeIn, peak, fadeOut, end],
-    [40, 0, 0, -30]
+    isBottom ? [30, 0, 0, -30] : [-30, 0, 0, 30]
   );
 
   return (
+    <motion.div
+      style={{ opacity, y }}
+      className={`absolute w-[38%] flex flex-col gap-2 pointer-events-none ${POSITION_CLASSES[note.position]}`}
+    >
+      <h3 className="font-display text-2xl font-semibold tracking-widest text-[#C9A84C]">
+        {note.title}
+      </h3>
+      <p className="font-body text-sm md:text-base max-w-sm leading-relaxed font-light text-white">
+        {note.description}
+      </p>
+    </motion.div>
+  );
+}
+
+function NotePair({ pair, index, scrollYProgress }) {
+  return (
     <>
       {pair.map((note) => (
-        <motion.div
+        <NoteItem
           key={note.title}
-          style={{ opacity, y }}
-          className={`absolute w-[38%] flex flex-col gap-2 pointer-events-none ${POSITION_CLASSES[note.position]}`}
-        >
-          <h3 className="font-display text-2xl font-semibold tracking-widest text-[#C9A84C] ">
-            {note.title}
-          </h3>
-          <p className="font-body text-sm md:text-base max-w-sm leading-relaxed font-light text-white">
-            {note.description}
-          </p>
-        </motion.div>
+          note={note}
+          pairIndex={index}
+          scrollYProgress={scrollYProgress}
+        />
       ))}
     </>
   );

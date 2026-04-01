@@ -1,3 +1,5 @@
+ import ScrollVelocity from '../components/ScrollVelocity';
+  
 const footerData = [
   {
     heading: "Experiences",
@@ -15,7 +17,7 @@ const footerData = [
 
 export default function Footer() {
   return (
-    <footer className="relative bg-[#f0ece4] pl-6 sm:px-10 md:px-14 pt-14 md:pt-20 pb-20">
+    <footer className="relative bg-[#f0ece4] pl-6 sm:px-10 md:px-14 pt-14 md:pt-20 pb-7">
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 max-w-6xl mx-auto">
 
         {/* Brand column */}
@@ -54,9 +56,15 @@ export default function Footer() {
           </div>
         ))}
       </div>
-
+      <div className='pt-24'>
+        <ScrollVelocity
+          texts={['Celeb8 Life • Curated Experiences • Every Pour Matters •']} 
+          velocity={70}
+          className="custom-scroll-text"
+        />
+      </div>
       {/* Bottom bar */}
-      <div className="mt-14 pt-6  flex flex-col sm:flex-row justify-between items-center gap-2 text-[9px] tracking-[0.35em] uppercase font-light text-[#6b6b63]">
+      <div className="mt-32 pt-6  flex flex-col sm:flex-row justify-between items-center gap-2 text-[9px] tracking-[0.35em] uppercase font-light text-[#6b6b63]">
         <span>© 2026 Celeb8Life</span>
         <span>All Rights Reserved</span>
       </div>

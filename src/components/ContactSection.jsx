@@ -4,10 +4,12 @@ import { FadeUp, LineReveal } from "./Reveal";
 import logo from "./../public/logo.svg"
 import Footer from "./Footer";
 
+
 export default function ContactSection() {
   const sectionRef = useRef(null);
    const [email, setEmail] = useState("");
   const bgWordOffset = useParallax(sectionRef, 0.08);
+  const scrollOffset = useParallax(sectionRef, 0.24);
   const textOffset = useParallax(sectionRef, 0.4);
 
   return (
@@ -17,8 +19,13 @@ export default function ContactSection() {
       id="contact"
       className="relative min-h-screen pt-32 bg-[#f0ece4] flex items-center flex-col justify-center overflow-hidden "
     >
-      {/* Giant background word */}
        <div
+          style={{
+            transform: ` translateY(${scrollOffset}px)`,
+            willChange: "transform",
+          }}
+        >
+         <div
         className=" pt-20 flex justify-center pointer-events-none overflow-hidden"
         style={{ transform: `translateY(${bgWordOffset}px)`, willChange: "transform" }}
       >
@@ -31,7 +38,8 @@ export default function ContactSection() {
           filter: "invert(0) brightness(0) saturate(0)", // nuke it to black
         }}
       />
-      </div>
+        </div>
+        </div>
        <div
         className="w-full px-6  pt-52 flex justify-between items-start"
       >
