@@ -8,13 +8,13 @@ const NOTE_PAIRS = [
       title: "SMOKY",
       description:
         "Deep, layered, and unmistakably bold. Smoky expressions carry notes of peat, charred wood, and a lingering warmth that unfolds with every sip.",
-      position: "right",
+      position: "bottom-right",
     },
     {
       title: "SWEET",
       description:
         "Smooth, rich, and inviting. Sweet notes reveal hints of honey, vanilla, and caramel, creating a balanced warmth that lingers gently on the palate.",
-      position: "left",
+      position: "top-left",
     },
   ],
   [
@@ -22,26 +22,24 @@ const NOTE_PAIRS = [
       title: "SPICY",
       description:
         "Warm, vibrant, and full of character. Spicy notes bring hints of pepper, cinnamon, and subtle heat that add depth and intensity to every sip.",
-      position: "right",
+      position: "bottom-right",
     },
     {
       title: "FRUITY",
       description:
         "Bright, vibrant, and expressive. Fruity notes bring hints of citrus, orchard fruits, and subtle sweetness, adding a lively character to every sip.",
-      position: "left",
+      position: "top-left",
     },
   ],
 ];
 
 const POSITION_CLASSES = {
-  right: "right-[8%] top-[42%] text-right items-end",
-  left: "left-[8%] top-[25%] text-left items-start",
+  "top-left":     "left-[8%] top-[12%] text-left items-start",
+  "bottom-right": "right-[8%] bottom-[12%] text-right items-end",
 };
 
-
-
 const PAIR_TIMINGS = [
-  { fadeIn: 0, peak: 0.08, fadeOut: 0.4, end: 0.48 },
+  { fadeIn: 0.18, peak: 0.22, fadeOut: 0.38, end: 0.44 },
   { fadeIn: 0.52, peak: 0.58, fadeOut: 0.74, end: 0.82 },
 ];
 
@@ -65,12 +63,12 @@ function NotePair({ pair, index, scrollYProgress }) {
         <motion.div
           key={note.title}
           style={{ opacity, y }}
-          className={`absolute w-[38%] flex flex-col gap-3 pointer-events-none ${POSITION_CLASSES[note.position]}`}
+          className={`absolute w-[38%] flex flex-col gap-2 pointer-events-none ${POSITION_CLASSES[note.position]}`}
         >
-          <h3 className="font-display  text-2xl font-semibold tracking-wide text-[#C9A84C] ">
+          <h3 className="font-display text-2xl font-semibold tracking-widest text-[#C9A84C] ">
             {note.title}
           </h3>
-          <p className="font-body text-sm md:text-base lg:text-lg max-w-sm leading-relaxed font-light text-white/90">
+          <p className="font-body text-sm md:text-base max-w-sm leading-relaxed font-light text-white">
             {note.description}
           </p>
         </motion.div>
@@ -86,7 +84,6 @@ export default function PourSection() {
     offset: ["start start", "end end"],
   });
 
-  // Image zooms in early, holds through both pairs, zooms back out at the end
   const scale = useTransform(
     scrollYProgress,
     [0, 0.18, 0.82, 1],
@@ -103,8 +100,6 @@ export default function PourSection() {
     ["0%", "-8%", "-8%", "0%"]
   );
 
-  // Vignette darkens as image zooms in, lifts slightly during the blank gap,
-  // darkens again for second pair, then lifts as user moves on
   const vignetteOpacity = useTransform(
     scrollYProgress,
     [0, 0.18, 0.44, 0.52, 0.82, 1],
