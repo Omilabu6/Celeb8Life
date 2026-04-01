@@ -142,7 +142,7 @@ export default function WaterBornSection() {
           </div>
 
           <h2
-            className="text-center w-[500px] leading-none mb-5"
+            className="text-center w-[500px]  italic leading-none mb-5"
             style={{
              fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(4.5rem, 13vw, 3rem)",
@@ -151,7 +151,7 @@ export default function WaterBornSection() {
               letterSpacing: "-0.025em",
             }}
           >
-            We return to the <em>essence</em> <br /> of <br /> Whiskey
+            We return to the essence <br /> of <br /> Whiskey
           </h2>
 
           <p className="text-black text-[10px] tracking-[0.4em] uppercase font-medium text-center leading-loose">
