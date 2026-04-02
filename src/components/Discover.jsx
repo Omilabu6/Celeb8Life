@@ -105,7 +105,7 @@ export default function PourSection() {
 
   return (
     <div ref={containerRef} className="relative" style={{ height: "900vh" }}>
-      <div className="sticky top-0 h-screen w-full overflow-hidden" style={{ backgroundColor: 'black' }}>
+      <div className="sticky top-0 h-screen w-full overflow-hidden">
 
         {/* Pour scene image with zoom */}
         <motion.div

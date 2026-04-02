@@ -57,7 +57,7 @@ export default function App() {
         <AboutSection />
         <GallerySection/>
         <div>
-          <div className="text-center mx-auto py-48 max-w-4xl">
+          <div className="text-center mx-auto py-8 md:py-48 max-w-4xl">
              <FadeUp>
                 <div style={{
                   display: "flex",
