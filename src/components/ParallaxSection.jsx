@@ -119,8 +119,8 @@ export default function ParallaxSection() {
               <em> Moment</em>
             </h2>
           </FadeUp>
-          <FadeUp delay={0.2} className="mt-8 flex items-center justify-center text-center ">
-            <p className="text-black/45 text-sm max-w-sm leading-relaxed font-light">
+          <FadeUp delay={0.2} className="mt-8 flex  items-center justify-center text-center ">
+            <p className="text-black/45 px-8 text-sm max-w-sm leading-relaxed font-light">
               Intimate tasting sessions for groups who seek more than a drink a story in every glass, a memory in every pour.
             </p>
           </FadeUp>
