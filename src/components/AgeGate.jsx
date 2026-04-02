@@ -191,10 +191,13 @@ export default function AgeGate({ onVerified }) {
             </p>
             <div className="w-8 h-px bg-[#2e2718] mb-7" />
             <h2 className="font-cormorant font-light text-[2.4rem] leading-tight text-[#3a3120]">
-              Not yet.
+              We look forward
+                to welcoming you
+                in time.
             </h2>
             <p className="mt-5 text-[9px] tracking-[0.3em] uppercase text-[#4a4028]">
-              Come back when you're of age
+              Please return when you meet the legal
+              drinking age in your country.
             </p>
           </div>
         )}
