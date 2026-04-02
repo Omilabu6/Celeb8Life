@@ -10,7 +10,7 @@ const StickyPanels = () => {
     <motion.section
       id="leave-no-trace"
       ref={leaveRef}
-      className="min-h-screen bg-[#f0ece4]  flex flex-col items-center justify-center px-4 py-32 bg-background"
+      className="min-h-screen bg-[#f0ece4]   flex flex-col items-center justify-center px-4 py-32 "
     >
       <div className="relative w-full max-w-[1200px] mx-auto">
 

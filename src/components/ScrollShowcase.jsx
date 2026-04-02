@@ -210,9 +210,9 @@ export default function ScrollShowcase() {
   const segProgress = (progress - activeIndex * segSize) / segSize;
 
   return (
-    <>
+    <div className="bg-[#f0ece4]">
       {/* ── Hero ── */}
-      <div className="py-36 text-center bg-[#f0ece4]">
+      <div className="pt-36 text-center ">
         <FadeUp>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
                 <div style={{ width: 48, height: 1, background: "rgba(0, 0, 0, 0.7)" }} />
@@ -238,57 +238,79 @@ export default function ScrollShowcase() {
       </div>
 
       {/* ── Scroll Showcase ── */}
-      <section
-        ref={containerRef}
-        className="relative bg-[#f0ece4]"
-        style={{ height: `${SLIDE_COUNT * 100}vh` }}
+      {/* ── Scroll Showcase ── */}
+<section
+  ref={containerRef}
+  className="relative"
+  style={{ height: `${SLIDE_COUNT * 100}vh` }}
+>
+  <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center bg-background">
+
+    {/* Sidebar counter — hidden on mobile */}
+    <div className="absolute left-[clamp(1.5rem,3vw,3rem)] top-1/2 -translate-y-1/2 z-10 pointer-events-none hidden md:block">
+      <div className="relative h-32 w-20">
+        {slides.map((_, i) => (
+          <SlideNumber key={i} index={i} activeIndex={activeIndex} />
+        ))}
+      </div>
+    </div>
+
+    {/* Mobile counter — top-left pill, only visible on mobile */}
+    <div className="absolute top-6 left-4 z-10 pointer-events-none flex md:hidden">
+      <div className="relative h-10 w-12">
+        {slides.map((_, i) => (
+          <SlideNumber key={i} index={i} activeIndex={activeIndex} />
+        ))}
+      </div>
+    </div>
+
+    {/* Layout — stacked on mobile, two-column on desktop */}
+    <div
+      className="
+        grid w-full items-center
+        grid-cols-1 gap-6 px-4 py-8
+        md:grid-cols-2 md:gap-[clamp(2rem,4vw,5rem)]
+      "
+      style={{
+        padding: undefined, // cleared so Tailwind classes take over on mobile
+      }}
+    >
+      {/* ↑ Re-apply the desktop padding inline only on md+ via a wrapper */}
+      {/* Image stack */}
+      <div
+        className="
+          relative w-full bg-secondary overflow-hidden rounded
+          max-h-[45vh]
+          md:max-h-[72vh]
+        "
+        style={{ aspectRatio: "3/4" }}
       >
-        <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center bg-background">
-          {/* Sidebar counter */}
-          <div className="absolute left-[clamp(1.5rem,3vw,3rem)] top-1/2 -translate-y-1/2 z-10 pointer-events-none">
-            <div className="relative h-32 w-20">
-              {slides.map((_, i) => (
-                <SlideNumber key={i} index={i} activeIndex={activeIndex} />
-              ))}
-            </div>
-          </div>
+        {slides.map((slide, i) => (
+          <SlideImage
+            key={i}
+            slide={slide}
+            index={i}
+            activeIndex={activeIndex}
+            progress={progress}
+          />
+        ))}
+      </div>
 
-          {/* Two-column grid */}
-          <div
-            className="grid grid-cols-2 gap-[clamp(2rem,4vw,5rem)] w-full items-center"
-            style={{ padding: "0 clamp(5rem,10vw,10rem) 0 clamp(5rem,8vw,8rem)" }}
-          >
-            {/* Image stack */}
-            <div
-              className="relative w-full bg-secondary overflow-hidden rounded"
-              style={{ aspectRatio: "3/4", maxHeight: "72vh" }}
-            >
-              {slides.map((slide, i) => (
-                <SlideImage
-                  key={i}
-                  slide={slide}
-                  index={i}
-                  activeIndex={activeIndex}
-                  progress={progress}
-                />
-              ))}
-            </div>
-
-            {/* Text stack */}
-            <div className="relative h-[65vh] overflow-hidden">
-              {slides.map((slide, i) => (
-                <SlideText
-                  key={i}
-                  slide={slide}
-                  index={i}
-                  activeIndex={activeIndex}
-                  segProgress={segProgress}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
+      {/* Text stack */}
+      <div className="relative h-[30vh] md:h-[65vh] overflow-hidden">
+        {slides.map((slide, i) => (
+          <SlideText
+            key={i}
+            slide={slide}
+            index={i}
+            activeIndex={activeIndex}
+            segProgress={segProgress}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+    </div>
   );
 }
