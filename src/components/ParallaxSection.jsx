@@ -50,7 +50,7 @@ function ProjectCard({ project }) {
   return (
     <div
       ref={ref}
-      className="w-[90%] h-screen mx-auto"
+      className="w-[90%] h-[60vh] md:h-screen mx-auto"
       style={{
         transform: `scale(${scale})`,
         transformOrigin: "center center",
@@ -80,17 +80,17 @@ export default function ParallaxSection() {
       ref={sectionRef}
       data-nav-theme="light"
       id="work"
-      className="relative bg-[#f0ece4] overflow-hidden pt-32 pb-48"
+      className="relative  bg-[#f0ece4] overflow-hidden pt-32 md:pb-48 "
     >
       {/* Giant background word */}
       <div
-        className="absolute top-0 left-0 right-0 flex justify-center pointer-events-none overflow-hidden"
+        className="absolute  top-0 left-0 right-0 flex justify-center pointer-events-none overflow-hidden"
         style={{ transform: `translateY(${bgWordOffset}px)`, willChange: "transform" }}
       >
         <img
         src={logo}
         alt=""
-        className="select-none w-[50vw]"
+        className="select-none w-[150vw] md:w-[50vw]"
         style={{ 
           opacity: 0.04,
           filter: "invert(0) brightness(0) saturate(0)", // nuke it to black
@@ -98,7 +98,7 @@ export default function ParallaxSection() {
       />
       </div>
 
-      <div className="max-w-7xl mx-auto  text-center px-8 md:px-16">
+      <div className="max-w-7xl mx-auto  text-center  md:px-16">
         {/* Section header */}
         <div
           className="mb-24"
@@ -106,7 +106,7 @@ export default function ParallaxSection() {
         >
           <FadeUp delay={0.1}>
             <h2
-              className="text-black leading-[0.95]"
+              className="text-black text-center  leading-[0.95]"
               style={{
                 fontFamily: "'Playfair Display', serif",
                 fontSize: "clamp(3.5rem, 8vw, 9rem)",

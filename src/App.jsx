@@ -49,8 +49,10 @@ export default function App() {
       >
         <Navbar />
         <Hero />
-        <ParallaxSection />
-        <WaterBornSection/>
+        <div className="bg-[#f0ece4]">
+          <ParallaxSection />
+          <WaterBornSection/>
+        </div>
         <MarqueeDivider theme="light" />
         <AboutSection />
         <GallerySection/>
