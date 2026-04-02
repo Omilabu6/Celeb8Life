@@ -45,8 +45,8 @@ export default function ContactSection() {
       {/* Left: Stay in touch */}
       <div className="flex flex-col gap-4">
         <p
-          className="text-xs tracking-widest uppercase font-semibold"
-          style={{ color: "#5a5147" }}
+          className="text-xs text-[#c9b46a] tracking-widest uppercase font-semibold"
+         
         >
           Stay in Touch
         </p>
@@ -77,8 +77,7 @@ export default function ContactSection() {
       {/* Right: Follow us */}
       <div className="flex flex-col gap-3 md:text-right">
         <p
-          className="text-xs tracking-widest uppercase font-semibold"
-          style={{ color: "#5a5147" }}
+          className="text-xs tracking-widest uppercase text-[#c9b46a] font-semibold"
         >
           Follow Us
         </p>
