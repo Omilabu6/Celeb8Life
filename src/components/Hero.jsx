@@ -28,7 +28,7 @@ export default function Hero() {
       />
 
        {/* Parallax Content */}
-      <div className="relative -mt-32 z-10 px-6 select-none pointer-events-none">
+      <div className="relative md:-mt-32 -mt-44 z-10 px-6 select-none pointer-events-none">
 
         {/* Title */}
         <div
