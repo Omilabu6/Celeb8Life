@@ -74,7 +74,7 @@ function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
 
   return (
     <div
-      className="absolute w-64 pointer-events-none"
+      className="absolute w-24 md:w-64 pointer-events-none"
       style={{
         ...posStyle,
         transform: `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`,
@@ -91,7 +91,7 @@ function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
           <img
             src={data.img}
             alt=""
-            className="w-full rounded-2xl  h-full object-cover "
+            className="w-full rounded-2xl  md:h-full object-cover "
           />
         </div>
       </div>
@@ -134,10 +134,10 @@ export default function WaterBornSection() {
         />
 
         <div
-          className="absolute inset-0 flex flex-col items-center justify-center select-none pointer-events-none"
+          className="absolute z-50 inset-0 flex flex-col items-center justify-center select-none pointer-events-none"
           style={{ transform: `translateY(${titleY}px)`, willChange: "transform" }}
         >
-          <div className="text-amber-400/35 text-[9px] tracking-[0.75em] uppercase font-light mb-7">
+          <div className="text-black/50 text-[9px] tracking-[0.75em] uppercase font-light mb-7">
             The Tasting Room
           </div>
 
@@ -145,7 +145,7 @@ export default function WaterBornSection() {
             className="text-center w-[500px]  italic leading-none mb-5"
             style={{
              fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(4.5rem, 13vw, 3rem)",
+             fontSize: "clamp(2.2rem, 5vw + 1rem, 4.5rem)",
               fontWeight: 300,
               color: "#C9A84C",
               letterSpacing: "-0.025em",
@@ -154,12 +154,12 @@ export default function WaterBornSection() {
             We return to the essence <br /> of <br /> Whiskey
           </h2>
 
-          <p className="text-black text-[10px] tracking-[0.4em] uppercase font-medium text-center leading-loose">
+          <p className="text-black/80 text-[10px] tracking-[0.4em] uppercase font-medium text-center leading-loose">
             NO SHORTCUT · NO EXCESS
           </p>
 
           <div className="flex items-center gap-4 mt-8">
-            <p className="text-black w-[340px] text-[10px] tracking-[0.1em] uppercase font-medium text-center">
+            <p className="text-black/80 w-[340px] text-[10px] tracking-[0.1em] uppercase font-medium text-center">
               In a world of noise, we choose intention.
               Every pour, every note, every moment is curated with care.
               It's not about more
