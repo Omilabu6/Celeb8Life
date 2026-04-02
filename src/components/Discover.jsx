@@ -222,7 +222,7 @@ function TastingNote({ note, index, scrollYProgress }) {
       <h3 className="text-2xl font-semibold tracking-widest" style={{ color: '#C9A84C' }}>
         {note.title}
       </h3>
-      <p className="text-sm md:text-base max-w-sm leading-relaxed font-light" style={{ color: 'white' }}>
+      <p className="text-sm md:text-base max-w-sm leading-relaxed font-light" style={{ color: 'rgba(240, 236, 228, 1)' }}>
         {note.description}
       </p>
     </motion.div>

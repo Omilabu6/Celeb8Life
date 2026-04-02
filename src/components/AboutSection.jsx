@@ -33,9 +33,13 @@ export default function AboutSection() {
         <div className="absolute inset-0 pt-52 flex items-center justify-center px-8">
           <div className="text-center max-w-4xl">
             <FadeUp>
-              <p className="text-white text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
+              <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+              <p style={{ color: "rgba(240, 236, 228, 0.7", fontSize: "0.625rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
                 About the Experience
               </p>
+              <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+            </div>
             </FadeUp>
             <h2
             className="text-foreground text-[#C9A84C]  leading-[1.05] mb-6"
@@ -67,7 +71,7 @@ export default function AboutSection() {
           >
             
             <FadeUp>
-              <p className="text-muted-foreground text-white
+              <p className="text-muted-foreground text-[#f0ece4]
                text-xl leading-[1.9] mb-6 font-light">
                 The Tasting Room is not a bar. It is a private ceremony where
                 whisky becomes the language of discovery guided by hosts who

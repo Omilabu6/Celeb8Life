@@ -228,7 +228,7 @@ function ExperienceCard({ item, index, cardSpeed = 0.1, imageSpeed = 0.18 }) {
               fontWeight: 300,
               lineHeight: 1.2,
               marginBottom: "1rem",
-              color: "var(--color-primary, #e8d5a3)",
+              color: "#f0ece4",
             }}
           >
             {item.title}
@@ -238,7 +238,7 @@ function ExperienceCard({ item, index, cardSpeed = 0.1, imageSpeed = 0.18 }) {
         <FadeUp delay={0.25}>
           <p
             style={{
-              color: "rgba(200,185,155,0.6)",
+              color: "[#f0ece4",
               fontSize: "0.875rem",
               lineHeight: 1.75,
               marginBottom: "1.5rem",
@@ -267,7 +267,7 @@ function BookButton({ label }) {
       style={{
         position: "relative",
         overflow: "hidden",
-        border: `1px solid ${hovered ? "rgba(232,213,163,0.9)" : "rgba(232,213,163,0.4)"}`,
+        border: `1px solid ${hovered ? "rgba(240, 236, 228, 0.9)" : "rgba(232,213,163,0.4)"}`,
         color: hovered ? "#1a1409" : "#e8d5a3",
         padding: "0.875rem 2rem",
         fontSize: "0.625rem",
@@ -284,7 +284,7 @@ function BookButton({ label }) {
         style={{
           position: "absolute",
           inset: 0,
-          background: "#e8d5a3",
+          background: "#f0ece4",
           transform: hovered ? "translateX(0)" : "translateX(-101%)",
           transition: "transform 0.5s cubic-bezier(0.4,0,0.2,1)",
         }}
@@ -305,7 +305,6 @@ export default function GallerySection() {
       style={{
         position: "relative",
         overflow: "hidden",
-        background: "#100d08",
         fontFamily: "'Playfair Display', serif",
       }}
     >
@@ -313,39 +312,8 @@ export default function GallerySection() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;1,300;1,400&display=swap');
       `}</style>
 
-      {/* Marquee */}
-      <Marquee
-        items={["Most Requested", "Signature Experiences", "Curated Selections", "Our Finest"]}
-        speed={50}
-        separator="◇"
-        className="py-5"
-        style={{
-          borderBottom: "1px solid rgba(232,213,163,0.05)",
-          color: "rgba(232,213,163,0.15)",
-          fontSize: "0.625rem",
-          letterSpacing: "0.5em",
-          textTransform: "uppercase",
-          fontWeight: 300,
-          fontFamily: "sans-serif",
-        }}
-      />
-
-      {/* Ambient glow */}
-      <div
-        style={{
-          position: "absolute",
-          top: "25%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: 600,
-          height: 600,
-          borderRadius: "50%",
-          background: "rgba(232,213,163,0.03)",
-          filter: "blur(120px)",
-          pointerEvents: "none",
-        }}
-      />
-
+     
+     
       <div
         style={{
           position: "relative",
@@ -364,17 +332,17 @@ export default function GallerySection() {
             willChange: "transform",
           }}
         >
-          <FadeUp>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
-              <div style={{ width: 48, height: 1, background: "rgba(232,213,163,0.2)" }} />
-              <p style={{ color: "rgba(232,213,163,0.6)", fontSize: "0.625rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
-                Choose Your Experience
-              </p>
-              <div style={{ width: 48, height: 1, background: "rgba(232,213,163,0.2)" }} />
-            </div>
-          </FadeUp>
+           <FadeUp>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
+                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+                <p style={{ color: "rgba(240, 236, 228, 0.7", fontSize: "0.625rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
+                  Choose Your Experience
+                </p>
+                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+              </div>
+           </FadeUp>
 
-          <h2 style={{ color: "#e8d5a3", lineHeight: 1.1, maxWidth: "48rem", margin: "0 auto", fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.2rem, 5vw, 3.5rem)", fontWeight: 300 }}>
+          <h2 style={{ color: "#C9A84C", lineHeight: 1.1, maxWidth: "48rem", margin: "0 auto", fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.2rem, 5vw, 3.5rem)", fontWeight: 300 }}>
             <RevealText text="Whether relaxed or refined," />
             <br />
             <RevealText text="every" delay={0.15} />
@@ -384,17 +352,18 @@ export default function GallerySection() {
             <RevealText text="with intention." delay={0.4} />
           </h2>
 
-          <FadeUp delay={0.5}>
-            <div style={{ marginTop: "2.5rem", width: 1, height: 64, background: "linear-gradient(to bottom, rgba(232,213,163,0.3), transparent)", margin: "2.5rem auto 0" }} />
-          </FadeUp>
+         
         </div>
 
         {/* Cards grid */}
         <div
           style={{
-            display: "grid justify-center align-center ",
+            display: "grid",
+            justifyContent: "center",
+            alignItems:"center",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
             gap: "4rem",
+            padding:"0em 5em"
           }}
         >
           {gallery.map((item, i) => (
@@ -408,14 +377,7 @@ export default function GallerySection() {
           ))}
         </div>
 
-        {/* Bottom decorative */}
-        <FadeUp delay={0.2}>
-          <div style={{ marginTop: "8rem", display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
-            <div style={{ width: 96, height: 1, background: "linear-gradient(to right, transparent, rgba(232,213,163,0.2))" }} />
-            <div style={{ width: 6, height: 6, rotate: "45deg", border: "1px solid rgba(232,213,163,0.3)", transform: "rotate(45deg)" }} />
-            <div style={{ width: 96, height: 1, background: "linear-gradient(to left, transparent, rgba(232,213,163,0.2))" }} />
-          </div>
-        </FadeUp>
+       
       </div>
     </section>
   );

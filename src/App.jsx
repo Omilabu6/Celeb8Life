@@ -57,10 +57,14 @@ export default function App() {
         <div>
           <div className="text-center mx-auto py-48 max-w-4xl">
             <FadeUp>
-              <p className="text-white text-[10px] tracking-[0.6em] uppercase mb-6 font-light">
-                Discover Your Flavor
-              </p>
-            </FadeUp>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
+                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+                <p style={{ color: "rgba(240, 236, 228, 0.7", fontSize: "0.625rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
+                  Discover Your Flavour
+                </p>
+                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+              </div>
+           </FadeUp>
             <h2
             className="text-foreground text-[#C9A84C]  leading-[1.05] mb-20"
             style={{
