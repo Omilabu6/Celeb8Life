@@ -37,7 +37,7 @@ export default function Footer() {
 
         {/* Nav columns */}
         {footerData.map((col) => (
-          <div key={col.heading} className="mx-auto">
+          <div key={col.heading} className="md:mx-auto">
             <h4 className="text-[#c9b46a] text-xs font-bold tracking-widest uppercase mb-5  font-sans">
               {col.heading}
             </h4>
@@ -56,7 +56,7 @@ export default function Footer() {
           </div>
         ))}
       </div>
-      <div className='pt-24'>
+      <div className='md:pt-4'>
         <ScrollVelocity
           texts={['Celeb8 Life • Curated Experiences • Every Pour Matters •']} 
           velocity={70}
@@ -64,7 +64,7 @@ export default function Footer() {
         />
       </div>
       {/* Bottom bar */}
-      <div className="mt-32 pt-6  flex flex-col sm:flex-row justify-between items-center gap-2 text-[9px] tracking-[0.35em] uppercase font-light text-[#6b6b63]">
+      <div className="md:mt-10 mt-0 flex-row  flex  justify-between items-center gap-2 text-[9px] tracking-[0.35em] uppercase font-light text-[#6b6b63]">
         <span>© 2026 Celeb8Life</span>
         <span>All Rights Reserved</span>
       </div>

@@ -79,7 +79,7 @@ export default function Cursor() {
       {/* Dot cursor — snaps instantly */}
       <div
         ref={dotRef}
-        className="fixed top-0 left-0 z-[99999] pointer-events-none mix-blend-difference"
+        className="fixed hidden md:block top-0 left-0 z-[99999] pointer-events-none mix-blend-difference"
         style={{
           width: clicked ? "6px" : "6px",
           height: clicked ? "6px" : "6px",
@@ -96,7 +96,7 @@ export default function Cursor() {
       {/* Ring cursor — lags behind with lerp */}
       <div
         ref={ringRef}
-        className="fixed top-0 left-0 z-[99998] pointer-events-none mix-blend-difference flex items-center justify-center"
+        className="fixed top-0 hidden md:block left-0 z-[99998] pointer-events-none mix-blend-difference flex items-center justify-center"
         style={{
           width: hovered ? "60px" : clicked ? "24px" : "36px",
           height: hovered ? "60px" : clicked ? "24px" : "36px",
