@@ -27,17 +27,18 @@ export default function Hero() {
         src={video}
       />
 
-      {/* Parallax Content */}
+       {/* Parallax Content */}
       <div className="relative -mt-32 z-10 px-6 select-none pointer-events-none">
+
         {/* Title */}
         <div
           style={{
-            transform: ` translateY(${scrollOffset}px)`,
+            transform: `translateY(${scrollOffset}px)`,
             willChange: "transform",
           }}
         >
           <h1
-            className=" leading-[0.9] mb-0 text-[#C9A84C]"
+            className="leading-[0.9] mb-0 text-[#C9A84C] text-center md:text-left"
             style={{
               fontFamily: "'Playfair Display', serif",
               fontSize: "clamp(4rem, 14vw, 8rem)",
@@ -45,19 +46,23 @@ export default function Hero() {
               letterSpacing: "-0.02em",
             }}
           >
-            THE <em className="text-[#C9A84C]">ART </em>OF  WHISKEY
+            THE <em className="text-[#C9A84C]">ART </em>OF WHISKEY
           </h1>
         </div>
 
         {/* Description */}
         <div
-          className="absolute right-10"
+          className="md:absolute md:mt-10 mt-3 md:right-10 flex justify-center md:block"
           style={{
             transform: `translateY(${subtitleOffset}px)`,
             willChange: "transform",
           }}
         >
-          <div className="text-[#9f916a] font-medium backdrop-blur-md rounded-2xl bg-black/10 p-3 text-[11px] w-[400px] tracking-[0.1em] shadow-2xl uppercase">
+          <div
+            className="text-[#9f916a] text-center md:text-start font-medium rounded-2xl p-3 text-[11px] tracking-[0.1em] uppercase
+              w-[90vw] max-w-[400px] md:w-[400px]
+              md:backdrop-blur-md md:bg-black/10 md:shadow-2xl"
+          >
             <p>
               An intimate tasting room where the world's finest whiskies become
               the language of extraordinary evenings. Eight seats. One world.
@@ -68,6 +73,7 @@ export default function Hero() {
             </p>
           </div>
         </div>
+
       </div>
 
       {/* Scroll indicator */}
