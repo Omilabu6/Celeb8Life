@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Loader from "./components/Loader";
 import Cursor from "./components/Cursor";
 import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
 import { FadeUp, RevealText } from "./components/Reveal";
 import MarqueeDivider from "./components/MarqueeDivider";
 import ParallaxSection from "./components/ParallaxSection";
@@ -15,6 +14,7 @@ import { Sticker } from "lucide-react";
 import StickyPanels from "./components/StickyPanels";
 import Footer from "./components/Footer";
 import ScrollShowcase from "./components/ScrollShowcase"
+import HomePage from "./components/HomePage";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,7 +48,7 @@ export default function App() {
         }}
       >
         <Navbar />
-        <Hero />
+        <HomePage />
         <div className="bg-[#f0ece4]">
           <ParallaxSection />
           <WaterBornSection/>

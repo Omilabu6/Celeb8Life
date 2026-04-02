@@ -1,6 +1,7 @@
-import { useRef } from "react";
+import { useRef,useState } from "react";
 import { useParallax } from "../hooks/useParallax";
 import arrow from "../public/arrow.png";
+import AgeGate from "./AgeGate";
 import video from "./../public/video.mp4";
 
 export default function Hero() {
@@ -11,12 +12,16 @@ export default function Hero() {
   const subtitleOffset = useParallax(sectionRef, 0.16);
   const scrollOffset = useParallax(sectionRef, 0.24);
 
+  
+
   return (
     <section
       ref={sectionRef}
       data-nav-theme="dark"
       className="relative w-full h-[130vh] overflow-hidden bg-black flex items-center justify-center"
     >
+    
+ 
       {/* Background Video */}
       <video
         className="absolute inset-0 w-full h-full object-cover opacity-55"
