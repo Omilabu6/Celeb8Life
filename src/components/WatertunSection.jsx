@@ -37,6 +37,67 @@ const rotateMap = {
   "bottom-left":  -3,
 };
 
+// function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
+//   const enterP = norm(progress, enterAt, peakAt);
+//   const exitP  = norm(progress, exitAt,  doneAt);
+
+//   const isRight = position.includes("right");
+//   const isTop   = position.includes("top");
+
+//   const xEnter = isRight ? lerp(140, 0, enterP) : lerp(-140, 0, enterP);
+//   const yEnter = isTop   ? lerp(-30, 0, enterP) : lerp(30, 0, enterP);
+
+//   const xExit = isRight ? lerp(0, 120, exitP) : lerp(0, -120, exitP);
+//   const yExit = isTop   ? lerp(0, -24, exitP) : lerp(0, 24, exitP);
+
+//   const x = exitP > 0 ? xExit : xEnter;
+//   const y = exitP > 0 ? yExit : yEnter;
+
+//   const opacity =
+//     exitP > 0 ? lerp(1, 0, exitP) : lerp(0, 1, enterP);
+
+//   const scale =
+//     exitP > 0 ? lerp(1, 0.97, exitP) : lerp(0.95, 1, enterP);
+
+//   // Tilt: exaggerated on enter/exit, settles to base angle at peak
+//   const baseTilt   = rotateMap[position];
+//   const tiltEnter  = lerp(baseTilt * 2.5, baseTilt, enterP);
+//   const tiltExit   = lerp(baseTilt, baseTilt * 2, exitP);
+//   const rotate     = exitP > 0 ? tiltExit : tiltEnter;
+
+//   const posStyle = {
+//     "top-right":    { top: "8vh",    right: "3vw" },
+//     "bottom-right": { bottom: "8vh", right: "3vw" },
+//     "top-left":     { top: "8vh",    left: "3vw"  },
+//     "bottom-left":  { bottom: "8vh", left: "3vw"  },
+//   }[position];
+
+//   return (
+//     <div
+//       className="absolute w-44 md:w-64 pointer-events-none"
+//       style={{
+//         ...posStyle,
+//         transform: `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`,
+//         opacity,
+//         willChange: "transform, opacity",
+//         zIndex: 20,
+//       }}
+//     >
+//       <div
+//         className="overflow-hidden border"
+//         style={{ borderRadius: "3px" }}
+//       >
+//         <div className="relative h-[300px] overflow-hidden">
+//           <img
+//             src={data.img}
+//             alt=""
+//             className="w-full rounded-2xl  md:h-full object-cover "
+//           />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
   const enterP = norm(progress, enterAt, peakAt);
   const exitP  = norm(progress, exitAt,  doneAt);
@@ -59,7 +120,6 @@ function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
   const scale =
     exitP > 0 ? lerp(1, 0.97, exitP) : lerp(0.95, 1, enterP);
 
-  // Tilt: exaggerated on enter/exit, settles to base angle at peak
   const baseTilt   = rotateMap[position];
   const tiltEnter  = lerp(baseTilt * 2.5, baseTilt, enterP);
   const tiltExit   = lerp(baseTilt, baseTilt * 2, exitP);
@@ -74,7 +134,7 @@ function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
 
   return (
     <div
-      className="absolute w-24 md:w-64 pointer-events-none"
+      className="absolute w-44 h-[33vh] md:w-64 pointer-events-none"
       style={{
         ...posStyle,
         transform: `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`,
@@ -83,22 +143,18 @@ function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
         zIndex: 20,
       }}
     >
-      <div
-        className="overflow-hidden border"
-        style={{ borderRadius: "3px" }}
-      >
-        <div className="relative h-[300px] overflow-hidden">
-          <img
-            src={data.img}
-            alt=""
-            className="w-full rounded-2xl  md:h-full object-cover "
-          />
-        </div>
+      <div className="relative w-full h-full overflow-hidden rounded-2xl border">
+        <img
+          src={data.img}
+          alt=""
+          className="w-full h-full object-cover"
+        />
+        {/* Dark overlay for mobile only */}
+        <div className="absolute inset-0 bg-black/40 md:hidden" />
       </div>
     </div>
   );
 }
-
 export default function WaterBornSection() {
   const containerRef = useRef(null);
   const [progress, setProgress] = useState(0);
