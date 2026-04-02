@@ -190,7 +190,7 @@ export default function WaterBornSection() {
         />
 
         <div
-          className="absolute z-50 inset-0 flex flex-col items-center justify-center select-none pointer-events-none"
+          className="absolute px-8 z-50 inset-0 flex flex-col items-center justify-center select-none pointer-events-none"
           style={{ transform: `translateY(${titleY}px)`, willChange: "transform" }}
         >
           <div className="text-black/50 text-[9px] tracking-[0.75em] uppercase font-light mb-7">

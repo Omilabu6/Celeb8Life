@@ -58,21 +58,35 @@ export default function App() {
         <GallerySection/>
         <div>
           <div className="text-center mx-auto py-48 max-w-4xl">
-            <FadeUp>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
-                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
-                <p style={{ color: "rgba(240, 236, 228, 0.7", fontSize: "0.625rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
-                  Discover Your Flavour
-                </p>
-                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
-              </div>
-           </FadeUp>
+             <FadeUp>
+                <div style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "1rem",
+                  marginBottom: "1.5rem"
+                }}>
+                  <div style={{ width: 32, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+                  <p style={{
+                    color: "rgba(240, 236, 228, 0.7)",
+                    fontSize: "0.5rem",
+                    letterSpacing: "0.5em",
+                    textTransform: "uppercase",
+                    fontWeight: 300,
+                    fontFamily: "sans-serif",
+                    margin: 0
+                  }}>
+                    Discover Your Flavour
+                  </p>
+                  <div style={{ width: 32, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+                </div>
+              </FadeUp>
             <h2
             className="text-foreground text-[#C9A84C]  leading-[1.05] mb-20"
             style={{
               
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(2.8rem, 6vw, 3rem)",
+              fontSize: "clamp(1.8rem, 8vw, 3rem)",
               fontWeight: 300,
             }}
           >

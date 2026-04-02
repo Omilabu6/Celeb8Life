@@ -238,7 +238,7 @@ function ExperienceCard({ item, index, cardSpeed = 0.1, imageSpeed = 0.18 }) {
         <FadeUp delay={0.25}>
           <p
             style={{
-              color: "[#f0ece4",
+              color: "#f0ece4",
               fontSize: "0.875rem",
               lineHeight: 1.75,
               marginBottom: "1.5rem",
@@ -318,12 +318,11 @@ export default function GallerySection() {
         style={{
           position: "relative",
           zIndex: 10,
-          padding: "8rem 1.5rem",
+          padding: "5rem 1.5rem",
           maxWidth: "80rem",
           margin: "0 auto",
         }}
       >
-        {/* Section header */}
         <div
           style={{
             marginBottom: "11rem",
@@ -333,16 +332,31 @@ export default function GallerySection() {
           }}
         >
            <FadeUp>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
-                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
-                <p style={{ color: "rgba(240, 236, 228, 0.7", fontSize: "0.625rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
-                  Choose Your Experience
-                </p>
-                <div style={{ width: 48, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
-              </div>
-           </FadeUp>
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "1rem",
+              marginBottom: "1.5rem"
+            }}>
+              <div style={{ width: 32, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+              <p style={{
+                color: "rgba(240, 236, 228, 0.7)",
+                fontSize: "0.5rem",
+                letterSpacing: "0.5em",
+                textTransform: "uppercase",
+                fontWeight: 300,
+                fontFamily: "sans-serif",
+                margin: 0
+              }}>
+                Choose Your Experience
+              </p>
+              <div style={{ width: 32, height: 1, background: "rgba(240, 236, 228, 0.7)" }} />
+            </div>
+          </FadeUp>
 
-          <h2 style={{ color: "#C9A84C", lineHeight: 1.1, maxWidth: "48rem", margin: "0 auto", fontFamily: "'Playfair Display', serif", fontSize: "clamp(2.2rem, 5vw, 3.5rem)", fontWeight: 300 }}>
+
+          <h2 style={{ color: "#C9A84C", lineHeight: 1.1, maxWidth: "48rem", margin: "0 auto", fontFamily: "'Playfair Display', serif", fontSize: "clamp(1.8rem, 5vw, 3rem)", fontWeight: 300 }}>
             <RevealText text="Whether relaxed or refined," />
             <br />
             <RevealText text="every" delay={0.15} />
@@ -354,6 +368,7 @@ export default function GallerySection() {
 
          
         </div>
+        
 
         {/* Cards grid */}
         <div

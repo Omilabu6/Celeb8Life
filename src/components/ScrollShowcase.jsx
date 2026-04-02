@@ -215,18 +215,18 @@ export default function ScrollShowcase() {
       <div className="py-36 text-center bg-[#f0ece4]">
         <FadeUp>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", marginBottom: "2rem" }}>
-                <div style={{ width: 48, height: 1, background: "rgba(0, 0, 0, 1)" }} />
-                <p style={{ color: "rgba(0, 0, 0, 1)", fontSize: "0.625rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
+                <div style={{ width: 48, height: 1, background: "rgba(0, 0, 0, 0.7)" }} />
+                <p style={{ color: "rgba(0, 0, 0, 0.7)", fontSize: "0.5rem", letterSpacing: "0.6em", textTransform: "uppercase", fontWeight: 300, fontFamily: "sans-serif", margin: 0 }}>
                  Our Collection
                 </p>
-                <div style={{ width: 48, height: 1, background: "rgba(0, 0, 0, 1)" }} />
+                <div style={{ width: 48, height: 1, background: "rgba(0, 0, 0, 0.7)" }} />
               </div>
            </FadeUp>
         <h2
           className="text-[#C9A84C] leading-[1.05] mb-15"
           style={{
             fontFamily: "'Playfair Display', serif",
-            fontSize: "clamp(2.8rem, 6vw, 3rem)",
+            fontSize: "clamp(1.8rem, 6vw, 3rem)",
             fontWeight: 300,
           }}
         >

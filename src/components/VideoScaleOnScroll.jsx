@@ -35,7 +35,7 @@ function VideoScaleOnScroll({ children }) {
   }, []);
 
   return (
-    <div ref={ref} style={{ transform: `scale(${scale})`, transition: "transform 0.1s ease-out" }}>
+    <div ref={ref} style={{ transform: `scale(${scale})`, transition: "transform 0.1s ease-out " }}>
       {children}
     </div>
   );
