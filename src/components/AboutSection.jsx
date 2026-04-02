@@ -103,7 +103,6 @@ export default function AboutSection() {
                       muted
                       loop
                       playsInline
-                      poster={aboutHero}
                     >
                       <source src={video2} type="video/mp4" className="rounded-2xl" />
                     </video>
