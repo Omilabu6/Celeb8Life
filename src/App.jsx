@@ -99,11 +99,13 @@ export default function App() {
           </div>
            <Discover/>
         </div>
-       
+        
+        <div className="bg-[#f0ece4] ">
         <ScrollShowcase />
         <StickyPanels/>
         <ContactSection />
         <Footer/>
+       </div>
       </div>
     </div>
   );
