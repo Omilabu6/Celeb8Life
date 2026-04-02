@@ -32,71 +32,71 @@ export default function ContactSection() {
         <img
         src={logo}
         alt=""
-        className="select-none w-[50vw]"
+        className="select-none w-[150vw] md:w-[50vw]"
         style={{ 
           opacity: 0.8,
-          filter: "invert(0) brightness(0) saturate(0)", // nuke it to black
+          filter: "invert(0) brightness(0.5) saturate(0)", // nuke it to black
         }}
       />
-        </div>
-        </div>
-       <div
-        className="w-full px-6  pt-52 flex justify-between items-start"
-      >
-        {/* Left: Stay in touch */}
-        <div className="flex flex-col gap-4">
-          <p
-            className="text-xs tracking-widest uppercase font-semibold"
+     </div>
+    </div>
+      <div className="w-full px-6 pt-52 flex flex-col gap-10 md:flex-row md:justify-between md:items-start md:gap-0">
+
+      {/* Left: Stay in touch */}
+      <div className="flex flex-col gap-4">
+        <p
+          className="text-xs tracking-widest uppercase font-semibold"
+          style={{ color: "#5a5147" }}
+        >
+          Stay in Touch
+        </p>
+        <p
+          className="text-xs tracking-widest uppercase"
+          style={{ color: "#5a5147" }}
+        >
+          Sign up for new releases, collaborations and events.
+        </p>
+        <div className="flex items-stretch border border-current" style={{ color: "#5a5147" }}>
+          <input
+            type="email"
+            placeholder="YOUR EMAIL"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="bg-transparent px-4 py-3 text-xs tracking-widest uppercase outline-none placeholder-current w-full md:w-56"
             style={{ color: "#5a5147" }}
+          />
+          <button
+            className="px-5 py-3 text-xs tracking-widest uppercase font-semibold border-l border-current hover:bg-stone-300 transition-colors duration-200"
+            style={{ color: "#5a5147", borderColor: "#5a5147" }}
           >
-            Stay in Touch
-          </p>
-          <p
-            className="text-xs tracking-widest uppercase"
-            style={{ color: "#5a5147" }}
-          >
-            Sign up for new releases, collaborations and events.
-          </p>
-          <div className="flex items-stretch border border-current" style={{ color: "#5a5147" }}>
-            <input
-              type="email"
-              placeholder="YOUR EMAIL"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="bg-transparent px-4 py-3 text-xs tracking-widest uppercase outline-none placeholder-current w-56"
-              style={{ color: "#5a5147" }}
-            />
-            <button
-              className="px-5 py-3 text-xs tracking-widest uppercase font-semibold border-l border-current hover:bg-stone-300 transition-colors duration-200"
-              style={{ color: "#5a5147", borderColor: "#5a5147" }}
-            >
-              Subscribe
-            </button>
-          </div>
-        </div>
- 
-        {/* Right: Follow us */}
-        <div className="flex flex-col gap-3 text-right">
-          <p
-            className="text-xs tracking-widest uppercase font-semibold"
-            style={{ color: "#5a5147" }}
-          >
-            Follow Us
-          </p>
-          <div className="flex flex-col gap-2">
-            {["Facebook", "Instagram"].map((platform) => (
-              <a
-                key={platform}
-                href="#"
-                className="text-xs tracking-widest uppercase border-b border-current pb-0.5 hover:opacity-60 transition-opacity duration-200"
-                style={{ color: "#5a5147" }}
-              >
-                {platform}
-              </a>
-            ))}
-          </div>
+            Subscribe
+          </button>
         </div>
       </div>
+
+      {/* Right: Follow us */}
+      <div className="flex flex-col gap-3 md:text-right">
+        <p
+          className="text-xs tracking-widest uppercase font-semibold"
+          style={{ color: "#5a5147" }}
+        >
+          Follow Us
+        </p>
+        <div className="flex flex-col gap-2">
+          {["Facebook", "Instagram"].map((platform) => (
+            <a
+              key={platform}
+              href="#"
+              className="text-xs tracking-widest uppercase border-b border-current pb-0.5 hover:opacity-60 transition-opacity duration-200"
+              style={{ color: "#5a5147" }}
+            >
+              {platform}
+            </a>
+          ))}
+        </div>
+      </div>
+
+</div>
       
     </section>
   );

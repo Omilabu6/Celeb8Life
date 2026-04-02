@@ -50,11 +50,9 @@ const StickyPanels = () => {
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ opacity: { duration: 0.5, delay: 0.35 } }}
-            // Mobile: fixed visible size, no width animation (width anim looks broken stacked)
-            // Desktop: width expands as original
             className="
               my-4 md:my-0
-              w-[clamp(100px,40vw,160px)] md:w-0
+              w-[clamp(100px,40vw,160px)] md:w-auto
               h-[clamp(110px,44vw,175px)] md:h-[clamp(150px,20vw,200px)]
               md:translate-y-10
               flex-shrink-0 overflow-hidden relative z-0
@@ -62,7 +60,7 @@ const StickyPanels = () => {
           >
             {/* Desktop-only width animation wrapper */}
             <motion.div
-              className="w-full h-full hidden md:block"
+              className="w-full h-full hidden md:flex"
               initial={{ width: 0 }}
               animate={isInView ? { width: "clamp(140px,20vw,200px)" } : { width: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.35 }}
@@ -76,7 +74,7 @@ const StickyPanels = () => {
               />
             </motion.div>
 
-            {/* Mobile-only image (no width animation, just fades in) */}
+            {/* Mobile-only image */}
             <img
               src={bottleImg}
               alt="Bottle"
