@@ -134,7 +134,7 @@ function Card({ data, progress, enterAt, peakAt, exitAt, doneAt, position }) {
 
   return (
     <div
-      className="absolute w-44 h-[33vh] md:w-64 pointer-events-none"
+      className="absolute w-44 h-[33vh] md:h-[55vh] md:w-64 pointer-events-none"
       style={{
         ...posStyle,
         transform: `translate(${x}px, ${y}px) scale(${scale}) rotate(${rotate}deg)`,
